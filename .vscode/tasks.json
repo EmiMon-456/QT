@@ -8,7 +8,7 @@
       "args": [
         "-spec",
         "win32-g++",
-        "editionqt.pro",
+        "editionqt-main/editionqt.pro",
         "-o",
         "Makefile"
       ],

@@ -1,0 +1,50 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "Windows-Mingw",
+      "intelliSenseMode": "windows-gcc-x64",
+      "compilerPath": "C:/Qt/6.9.1/mingw_64/bin/g++.exe",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "includePath": [
+        "${workspaceFolder}/editionqt-main/include",
+        "C:/Qt/6.9.1/mingw_64/include",
+        "C:/Qt/6.9.1/mingw_64/include/QtWidgets",
+        "C:/Qt/6.9.1/mingw_64/include/QtCore",
+        "C:/Qt/6.9.1/mingw_64/include/QtGui"
+      ],
+      "defines": [
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/editionqt-main/include",
+          "C:/Qt/6.9.1/mingw_64/include"
+        ]
+      }
+    },
+    {
+      "name": "macOS-Clang",
+      "intelliSenseMode": "macos-clang-x64",
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "includePath": [
+        "${workspaceFolder}/editionqt-main/include",
+        "/usr/local/opt/qt@6/include",
+        "/usr/local/opt/qt@6/include/QtWidgets",
+        "/usr/local/opt/qt@6/include/QtCore",
+        "/usr/local/opt/qt@6/include/QtGui"
+      ],
+      "defines": [],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/editionqt-main/include",
+          "/usr/local/opt/qt@6/include"
+        ]
+      }
+    }
+  ]
+}
