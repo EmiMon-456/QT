@@ -1,10 +1,21 @@
 #include "MainWindow.h"
+#include "DateWindow.h"
+#include <QCalendarWidget>
+#include <QDialog>
+#include <QMenu>
 #include <QMenuBar>
 #include <QStatusBar>
 #include <QToolBar>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QDate>
+#include <QAction>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -12,7 +23,18 @@ MainWindow::MainWindow(QWidget *parent)
       button_(new QPushButton("Presióname", this)),
       lineEdit_(new QLineEdit(this)),
       textEdit_(new QTextEdit(this))
+      
 {
+    // Inicialización del calendario y botón nuevo
+    calendarWidget_ = new QCalendarWidget(this);
+    calendarButton_ = new QPushButton("Seleccionar Fecha", this);
+
+    connect(calendarButton_, &QPushButton::clicked, this, [this]() {
+        QDate date = calendarWidget_->selectedDate();
+        on_calendarClicked(date);
+    });
+
+
     // 1) Configurar la ventana principal
     setWindowTitle("Ejemplo Qt – Controles Básicos");
     resize(600, 400);
@@ -28,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 4) Barra de herramientas que reutiliza la acción "Salir"
     QToolBar *toolbar = addToolBar("Principal");
     toolbar->addAction(exitAction);
+    toolbar->addWidget(label_); // Añadir QLabel a la barra de herramientas
 
     // 5) Conectar el botón al slot
     connect(button_, &QPushButton::clicked, this, &MainWindow::on_buttonClicked);
@@ -50,6 +73,8 @@ MainWindow::MainWindow(QWidget *parent)
     // QLabel y QTextEdit para mostrar líneas
     vbox->addWidget(new QLabel("Editor de Texto:", this));
     vbox->addWidget(textEdit_);
+    vbox->addWidget(calendarWidget_); // Añadir calendario al layout
+    vbox->addWidget(calendarButton_); // Añadir botón de calendario al layout
 
     central->setLayout(vbox);
 }
@@ -58,6 +83,7 @@ MainWindow::~MainWindow()
 {
     // Qt libera los hijos automáticamente
 }
+
 
 void MainWindow::on_buttonClicked()
 {
@@ -70,5 +96,12 @@ void MainWindow::on_buttonClicked()
     // Actualizar QLabel e insertar línea en QTextEdit
     label_->setText("Último ingreso: " + input);
     textEdit_->append("Ingresaste: " + input);
-    lineEdit_->clear();
+}
+
+// Definición de la función on_calendarClicked fuera de on_buttonClicked
+void MainWindow::on_calendarClicked(const QDate &date)
+{
+    textEdit_->append("Fecha seleccionada: " + date.toString());
+    DateWindow *dateWindow = new DateWindow(lineEdit_->text(), date, this);
+    dateWindow->exec();
 }

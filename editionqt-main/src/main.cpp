@@ -1,6 +1,7 @@
 #include <QApplication>
 
 #include "MainWindow.h"
+#include "DateWindow.h"
 
 int main(int argc, char *argv[]) {
     // 1. Crear el objeto QApplication
